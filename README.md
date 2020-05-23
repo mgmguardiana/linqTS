@@ -1,4 +1,6 @@
 # linqTS
+npm install @mgmguardiana/linqts
+
 <b>Import to your typescript file</b><br/>
 <i>import {Linq} from '@mgmguardiana/linqts/linq';</i>
 
