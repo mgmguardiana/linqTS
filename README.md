@@ -27,8 +27,8 @@ var orderedByProvinceArrays=linq.orderBy(x=>x.province)<br/>
 var orderByThenArrays=linq.orderBy(x=>x.province)<br/>
                           .thenBy(x=>x.city)<br/>
                           .thenByDescending(x=>x.barangay)<br/>
-                          .toArray()<br/>
+                          .toArray();<br/>
   
  var batangasAreas=linq.where(x=>x.province=="Batangas")<br/>
-                       .toArray()<br/>
+                       .toArray();<br/>
 }
