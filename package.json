@@ -1,44 +1,23 @@
 {
-  "_from": "@mgmguardiana/linqts",
-  "_id": "@mgmguardiana/linqts@1.0.0",
-  "_inBundle": false,
-  "_integrity": "sha512-gUUEmIlsGyDh27/s1ZRXS2q6eqDnmXvELjCJ8BZQ0RlDAsDuFpfH8RVxVvpx3Mef8oGF+d2MjBPhm3bTNhXLIA==",
-  "_location": "/@mgmguardiana/linqts",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "@mgmguardiana/linqts",
-    "name": "@mgmguardiana/linqts",
-    "escapedName": "@mgmguardiana%2flinqts",
-    "scope": "@mgmguardiana",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/@mgmguardiana/linqts/-/linqts-1.0.0.tgz",
-  "_shasum": "0d3ca7867d353cf2646c2d711f1cc819cbe43215",
-  "_spec": "@mgmguardiana/linqts",
-  "_where": "D:\\npm repo\\@mgmguardiana\\test",
-  "author": {
-    "name": "Mark Gyver Guardiana"
-  },
-  "bundleDependencies": false,
-  "deprecated": false,
+  "name": "@mgmguardiana/linqts",
+  "version": "1.0.3",
   "description": "LinqTS is build just like C# Linq and SQL query keywords like \"where\",\"not in\", \"order by asc/desc\",\"orderby/thenby\" chain methods and more",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [
     "LinqTS",
     "LinqTypescript"
   ],
+  "author": "Mark Gyver Guardiana",
   "license": "ISC",
-  "main": "index.js",
-  "name": "@mgmguardiana/linqts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgmguardiana/linqts.git"
   },
-  "version": "1.0.0"
+  "bugs": {
+    "url": "https://github.com/mgmguardiana/linqts/issues"
+  },
+  "homepage": "https://github.com/mgmguardiana/linqts#readme"
 }

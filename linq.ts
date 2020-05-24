@@ -1,5 +1,5 @@
 import { IComparer } from './iComparer';
-import { NullableActions } from '../nullcoeliesce/nulldefault';
+import { NullableActions } from './nulldefault';
 
 export class Linq<TPrimary>{
 
