@@ -5,8 +5,7 @@ export class Linq<TPrimary>{
 
     private constructor(
         private data:TPrimary[],
-        private comparers:IComparer<TPrimary>[]=[],
-        private selectFormat:((arg0:TPrimary)=>TResult)[]=[]
+        private comparers:IComparer<TPrimary>[]=[]
     ){}
 
     get length(): number {
@@ -89,10 +88,6 @@ export class Linq<TPrimary>{
     {
         this.addToComparer(predicateAction,false);
         return this;
-    }
-
-    public select<TResult>(predicateAction:(arg0:TPrimary)=>TResult){
-        this.selectFormat.push(predicateAction);
     }
 
     private sort():TPrimary[]{
