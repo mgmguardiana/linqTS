@@ -1,6 +1,6 @@
 {
   "name": "@mgmguardiana/linqts",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "LinqTS is build just like C# Linq and SQL query keywords like \"where\",\"not in\", \"order by asc/desc\",\"orderby/thenby\" chain methods and more",
   "main": "index.js",
   "scripts": {
