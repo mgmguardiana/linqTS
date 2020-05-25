@@ -3,11 +3,11 @@ import { NullableActions } from './nulldefault';
 
 export class Linq<TPrimary>{
 
-    private comparers:IComparer<TPrimary>[];
-
-    private constructor(private data:TPrimary[],comparers:IComparer<TPrimary>[]=[]){
-        this.comparers=comparers;
-    }
+    private constructor(
+        private data:TPrimary[],
+        private comparers:IComparer<TPrimary>[]=[],
+        private selectFormat:((arg0:TPrimary)=>TResult)[]=[]
+    ){}
 
     get length(): number {
         return this.data.length;
@@ -59,8 +59,7 @@ export class Linq<TPrimary>{
         this.data.forEach(item=>{
             try{
                 var value=predicateAction(item);
-                //if(!ArrayHelper.any(distinctKeys,x=>x==value))
-                if(this.hasAny(distinctKeys,x=>x==value))
+                if(this.hasAny<TResult>(distinctKeys,x=>x==value))
                     distinctKeys.push(value);
             }
             catch(err){}
@@ -70,7 +69,14 @@ export class Linq<TPrimary>{
 
     private hasAny<T>(data:T[],predicateAction:(arg0:T)=>boolean):boolean
     {
-        return -1 != data.findIndex(value=>predicateAction(value));
+        //return -1 != data.findIndex(value=>predicateAction(value));
+        var result=false;
+        for(var i=0;i<data.length;i++)
+        {
+            if(predicateAction(data[i]))
+                return true;
+        }
+        return false;
     }
 
     public thenBy(predicateAction:(arg0:TPrimary)=>string|number)
@@ -85,6 +91,10 @@ export class Linq<TPrimary>{
         return this;
     }
 
+    public select<TResult>(predicateAction:(arg0:TPrimary)=>TResult){
+        this.selectFormat.push(predicateAction);
+    }
+
     private sort():TPrimary[]{
         var res=this.doSortStacking(this.data,0,undefined);
         this.clearComparers();
@@ -97,8 +107,7 @@ export class Linq<TPrimary>{
         data.forEach(item=>{
             try{
                 var value=comparer.action(item);
-                //if(!ArrayHelper.any(distinctKey,x=>x==value))
-                if(this.hasAny(distinctKey,x=>x==value))
+                if(!this.hasAny(distinctKey,x=>x==value))
                     distinctKey.push(value);
             }
             catch(err){}
@@ -186,7 +195,8 @@ export class Linq<TPrimary>{
     {
         this.clearComparers();
         var res=this.data.filter(value=>{
-            try{return predicateAction(value);}
+            try{
+                return predicateAction(value);}
             catch(err){return false;}
         });
         return new Linq(res);
@@ -196,7 +206,7 @@ export class Linq<TPrimary>{
     public any(predicateAction:(arg0:TPrimary)=>boolean):boolean
     {
         this.clearComparers();
-        return -1 != this.data.findIndex(value=>predicateAction(value));
+        return this.hasAny(this.data,predicateAction);
     }
 
     public notIn<T2>(item2:Linq<T2>,predicateCondition:(arg0:TPrimary)=>string|number|Date, predicateConditionData:(arg0:T2)=>string|number|Date):Linq<TPrimary>
@@ -224,7 +234,7 @@ export class Linq<TPrimary>{
     
     public remove(predicateAction:(arg0: TPrimary)=>boolean){
         this.clearComparers();
-        var index=this.data.findIndex(x=>predicateAction(x));
+        var index=this.indexOf(predicateAction);
         if(index!=-1)
             this.data.splice(index,1);
     }
