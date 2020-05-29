@@ -258,7 +258,7 @@ export class Linq<TPrimary>{
         var res = this.where(predicateAction);
         if(NullableActions.isNull(res)) return undefined;
         if(res.length==0) return undefined;
-        return res[0];
+        return res.data[0];
     }
 
     public innerJoin<TForeign,TResult>(joinWith:Linq<TForeign>,predicateAction:(arg1:TPrimary,arg2:TForeign)=>boolean,processResult:(arg0:TPrimary,arg1:TForeign)=>TResult):Linq<TResult>{
